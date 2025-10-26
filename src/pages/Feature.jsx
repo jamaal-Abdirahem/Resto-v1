@@ -17,9 +17,7 @@ function FeatureCard({ id, icon, title, text }) {
       <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#EEF4FF] text-[#2E4BFF] ring-1 ring-[#BFD1FF]">
         {icon}
       </div>
-      <h2 className="mt-4 title-sm text-gray-900">
-        {title}
-      </h2>
+      <h2 className="mt-4 title-sm text-gray-900">{title}</h2>
       <p className="mt-2 body text-gray-600">{text}</p>
     </div>
   );
@@ -28,9 +26,7 @@ function FeatureCard({ id, icon, title, text }) {
 export default function Feature() {
   return (
     <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-      <h1 className="title text-gray-900 text-center">
-        All‑in‑one Features
-      </h1>
+      <h1 className="title text-gray-900 text-center">All‑in‑one Features</h1>
       <p className="mt-3 body text-gray-600 text-center max-w-3xl mx-auto">
         Explore the complete toolkit you get with Resto—no monthly software
         fees.

@@ -122,9 +122,7 @@ export default function Home() {
       {/* 2-minute tour section with placeholder video */}
       <section className="bg-[#FFF6F3]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
-          <p className="eyebrow">
-            A 2-MINUTE TOUR
-          </p>
+          <p className="eyebrow">A 2-MINUTE TOUR</p>
           <h2 className="mt-3 title text-gray-900">
             See How Resto Transforms Your
             <br className="hidden sm:block" />
@@ -290,9 +288,7 @@ export default function Home() {
       {/* Why Choose Us */}
       <section className="bg-[#FFF6F3]">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <h2 className="text-center title text-gray-900">
-            Why Choose Us
-          </h2>
+          <h2 className="text-center title text-gray-900">Why Choose Us</h2>
           <p className="mt-3 text-center max-w-3xl mx-auto body text-gray-600">
             Experience unmatched value with local support, zero fees, and an
             all‑in‑one system built for Somali businesses.
@@ -325,9 +321,7 @@ export default function Home() {
       {/* All-in-one features list */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <p className="text-center eyebrow">
-            Every Feature Included
-          </p>
+          <p className="text-center eyebrow">Every Feature Included</p>
           <h2 className="mt-2 text-center title text-gray-900">
             This Is The Complete, All‑in‑One System. You Get Every Feature To
             Run Your Business
@@ -385,9 +379,7 @@ export default function Home() {
       {/* Testimonials Slider Section */}
       <section className="bg-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
-          <h2 className="title text-gray-900">
-            What Our Clients Says
-          </h2>
+          <h2 className="title text-gray-900">What Our Clients Says</h2>
           <p className="mt-2 body text-gray-600">
             See Why Restaurant Owners Are Switching To Resto
           </p>
@@ -566,9 +558,7 @@ function FeatureCard({ icon, title, text }) {
       <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#EEF4FF] text-[#2E4BFF] ring-1 ring-[#BFD1FF]">
         {icon}
       </div>
-      <h3 className="mt-4 title-sm text-gray-900">
-        {title}
-      </h3>
+      <h3 className="mt-4 title-sm text-gray-900">{title}</h3>
       <p className="mt-2 body text-gray-600">{text}</p>
     </div>
   );
@@ -600,9 +590,7 @@ function WhyRow({ title, text, src, alt = "", reversed = false }) {
       </div>
       {/* Copy */}
       <div>
-        <h3 className="title-sm text-gray-900">
-          {title}
-        </h3>
+        <h3 className="title-sm text-gray-900">{title}</h3>
         <p className="mt-2 body text-gray-600">{text}</p>
       </div>
     </div>
@@ -626,9 +614,7 @@ function ProductRow({
     >
       {/* Text */}
       <div>
-        <h3 className="title-sm text-gray-900">
-          {title}
-        </h3>
+        <h3 className="title-sm text-gray-900">{title}</h3>
         <p className="mt-2 body text-gray-600">{text}</p>
         <Link
           to={href}
