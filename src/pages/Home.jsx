@@ -90,7 +90,7 @@ export default function Home() {
 
         {/* Foreground content */}
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
-          <h1 className="title md:text-6xl leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+          <h1 className="title md:text-6xl leading-tight text-[#FFF5F1] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
             Run Your Restaurant On A
             <br className="hidden sm:block" />
             Free Professional System
@@ -436,11 +436,15 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            {/* Right placeholder media */}
+            {/* Right media: real CTA image */}
             <div className="w-full">
-              <div className="aspect-4/3 w-full rounded-xl bg-[#EEF4FF] ring-1 ring-[#E4ECFF] flex items-center justify-center">
-                <ImageIcon className="h-8 w-8 text-[#2E4BFF]" />
-              </div>
+              <img
+                src="/media/CTA%20img.jpg"
+                alt="Resto system helping restaurants improve profitability"
+                className="aspect-4/3 w-full rounded-xl object-cover"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
