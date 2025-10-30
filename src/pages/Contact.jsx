@@ -1,8 +1,16 @@
 import { useState } from "react";
 import { Mail, Phone } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { useSEO } from "../lib/useSEO";
 
 export default function Contact() {
+  useSEO({
+    title: "Contact Resto — Get Started Free",
+    description:
+      "Talk to our team about the $0/month Resto system. Installation, training, and ongoing local support included.",
+    path: "/contact",
+    image: "/media/CTA%20img.jpg",
+  });
   const TARGET_EMAIL =
     import.meta.env.VITE_CONTACT_EMAIL || "jamaalabdirahim@gmail.com";
   const [name, setName] = useState("");
@@ -68,14 +76,14 @@ export default function Contact() {
   };
 
   return (
-    <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 reveal">
       <h1 className="title text-gray-900">Get In Touch</h1>
       <p className="mt-3 body text-gray-600 max-w-2xl">
         Tell us about your restaurant and we’ll help you get started with
         Resto—installation, training and ongoing support are all included.
       </p>
 
-      <div className="mt-8 grid gap-10 lg:grid-cols-2">
+      <div className="mt-8 grid gap-10 lg:grid-cols-2 reveal-children">
         {/* Contact form */}
         <form
           className="grid gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.03)]"

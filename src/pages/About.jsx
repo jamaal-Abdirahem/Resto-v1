@@ -1,9 +1,17 @@
 import { HandCoins, Headset, ShieldCheck, Layers } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSEO } from "../lib/useSEO";
 
 export default function About() {
+  useSEO({
+    title: "How Resto Works | About Us",
+    description:
+      "Learn how Resto can be free: a true win‑win partnership with local Somali support and payment processing.",
+    path: "/aboutus",
+    image: "/media/picture%201.png",
+  });
   return (
-    <section className="bg-white">
+    <section className="bg-white reveal">
       {/* Hero/Intro */}
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         <div className="grid items-start gap-10 sm:gap-12 sm:grid-cols-2">
@@ -61,7 +69,7 @@ export default function About() {
       </div>
 
       {/* Benefits */}
-      <div className="bg-[#FFF6F3]">
+      <div className="bg-[#FFF6F3] reveal">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <h2 className="text-center title text-gray-900">
             Why This Model Works
@@ -71,7 +79,7 @@ export default function About() {
             partner focused on helping you grow.
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3 reveal-children">
             <BenefitCard
               icon={<Headset className="h-5 w-5" />}
               title="In-Person Somali Support"
@@ -92,7 +100,7 @@ export default function About() {
       </div>
 
       {/* CTA */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center reveal">
         <h3 className="title text-gray-900">
           Ready to switch to a $0/month system?
         </h3>

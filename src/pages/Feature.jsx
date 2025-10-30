@@ -7,6 +7,7 @@ import {
   MessageSquareText,
   ShoppingBasket,
 } from "lucide-react";
+import { useSEO } from "../lib/useSEO";
 
 function FeatureCard({ id, icon, title, text }) {
   return (
@@ -24,15 +25,22 @@ function FeatureCard({ id, icon, title, text }) {
 }
 
 export default function Feature() {
+  useSEO({
+    title: "All‑in‑one Features | Resto",
+    description:
+      "Explore Resto features: POS, KDS, analytics, inventory, self‑service, customer management, SMS marketing.",
+    path: "/features",
+    image: "/media/feature%201.png",
+  });
   return (
-    <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 reveal">
       <h1 className="title text-gray-900 text-center">All‑in‑one Features</h1>
       <p className="mt-3 body text-gray-600 text-center max-w-3xl mx-auto">
         Explore the complete toolkit you get with Resto—no monthly software
         fees.
       </p>
 
-      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 reveal-children">
         <FeatureCard
           id="pos"
           icon={<TabletSmartphone className="h-4 w-4" />}

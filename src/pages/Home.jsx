@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Play,
@@ -13,8 +13,17 @@ import {
   ArrowRight,
   Image as ImageIcon,
 } from "lucide-react";
+import { useSEO } from "../lib/useSEO";
 
 export default function Home() {
+  useSEO({
+    title: "Resto — Free Restaurant Management System",
+    description:
+      "Resto is a $0/month, all‑in‑one restaurant management system with POS, KDS, analytics, inventory, self‑service, CRM, and SMS. Local Somali support.",
+    path: "/",
+    image: "/media/CTA%20img.jpg",
+  });
+  const heroRef = useRef(null);
   // State and ref to control the tour video
   const tourRef = useRef(null);
   const [tourPlaying, setTourPlaying] = useState(false);
@@ -24,6 +33,23 @@ export default function Home() {
   const toggleTour = () => {
     const v = tourRef.current;
     if (!v) return;
+    // Lazy set src on first interaction to defer network
+    if (!v.getAttribute("src")) {
+      v.setAttribute("src", "/media/1026(1).webm");
+      // Ensure the tour video stays muted even if the file has audio
+      try {
+        v.muted = true;
+        v.defaultMuted = true;
+        v.volume = 0;
+      } catch {
+        // ignore
+      }
+      try {
+        v.load();
+      } catch {
+        // ignore load errors in older browsers
+      }
+    }
     if (v.paused) {
       v.play();
       setTourPlaying(true);
@@ -67,10 +93,40 @@ export default function Home() {
     const ss = String(sec).padStart(2, "0");
     return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
   };
+  useEffect(() => {
+    // Defer hero video load to idle to improve FCP/LCP
+    const run = () => {
+      const v = heroRef.current;
+      if (!v) return;
+      if (!v.getAttribute("src")) {
+        // Use the newly added hero clip (filename contains spaces)
+        v.setAttribute("src", "/media/resto add video.webm");
+        // Force mute the hero clip (some browsers or streams may carry audio)
+        try {
+          v.muted = true;
+          v.defaultMuted = true;
+          v.volume = 0;
+        } catch {
+          // ignore
+        }
+        try {
+          v.load();
+          v.play().catch(() => {});
+        } catch {
+          // ignore autoplay/load errors
+        }
+      }
+    };
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(run, { timeout: 1000 });
+    } else {
+      setTimeout(run, 250);
+    }
+  }, []);
   return (
     <>
       {/* Hero (inline) */}
-      <section className="relative isolate overflow-hidden">
+      <section className="relative isolate overflow-hidden reveal" data-y="28">
         {/* Background video using webm file */}
         <div className="absolute inset-0 -z-10">
           <video
@@ -79,10 +135,11 @@ export default function Home() {
             loop
             muted
             playsInline
-            poster=""
+            preload="none"
+            ref={heroRef}
+            poster="/media/CTA%20img.jpg"
           >
-            <source src="/media/1026(1).webm" type="video/webm" />
-            {/* Optionally add a fallback mp4 source here */}
+            {/* src set after idle by JS to defer network */}
           </video>
           {/* Professional overlay: subtle dark with blur for contrast */}
           <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
@@ -120,7 +177,7 @@ export default function Home() {
       </section>
 
       {/* 2-minute tour section with placeholder video */}
-      <section className="bg-[#FFF6F3]">
+      <section className="bg-[#FFF6F3] reveal">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
           <p className="eyebrow">A 2-MINUTE TOUR</p>
           <h2 className="mt-3 title text-gray-900">
@@ -140,10 +197,9 @@ export default function Home() {
               <video
                 ref={tourRef}
                 className="absolute inset-0 h-full w-full object-cover"
-                src="/media/1026(1).webm"
+                preload="none"
                 playsInline
                 muted
-                preload="metadata"
                 onLoadedMetadata={onLoaded}
                 onPlay={() => setTourPlaying(true)}
                 onPause={() => setTourPlaying(false)}
@@ -222,7 +278,7 @@ export default function Home() {
       </section>
 
       {/* Benefits grid */}
-      <section className="bg-white">
+      <section className="bg-white reveal">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
           <h2 className="text-center title text-gray-900">
             The Power Of A $0/Month System.
@@ -259,7 +315,7 @@ export default function Home() {
       </section>
 
       {/* Win‑win partnership blurb */}
-      <section className="bg-white">
+      <section className="bg-white reveal">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 text-center">
           <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#EEF4FF] text-[#2E4BFF] ring-1 ring-[#BFD1FF]">
             <HandCoins className="h-6 w-6" />
@@ -294,7 +350,7 @@ export default function Home() {
             all‑in‑one system built for Somali businesses.
           </p>
 
-          <div className="mt-12 space-y-12">
+          <div className="mt-12 space-y-12 reveal-children">
             <WhyRow
               title="Local Somali Support"
               text="If you have a problem, you are calling us, your local partners. We provide free installation, free training, and free ongoing support."
@@ -319,7 +375,7 @@ export default function Home() {
       </section>
 
       {/* All-in-one features list */}
-      <section className="bg-white">
+      <section className="bg-white reveal">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <p className="text-center eyebrow">Every Feature Included</p>
           <h2 className="mt-2 text-center title text-gray-900">
@@ -327,7 +383,7 @@ export default function Home() {
             Run Your Business
           </h2>
 
-          <div className="mt-10 space-y-12">
+          <div className="mt-10 space-y-12 reveal-children">
             <ProductRow
               title="Digital Point Of Sale (POS)"
               text="Take orders fast with a modern, reliable POS that handles dine‑in and takeaway and works smoothly at peak hours."
@@ -377,7 +433,7 @@ export default function Home() {
         </div>
       </section>
       {/* Testimonials Slider Section */}
-      <section className="bg-white">
+      <section className="bg-white reveal">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
           <h2 className="title text-gray-900">What Our Clients Says</h2>
           <p className="mt-2 body text-gray-600">
@@ -389,7 +445,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative isolate bg-[#E6533C]">
+      <section className="relative isolate bg-[#E6533C] reveal" data-y="36">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center text-white">
           <h2 className="title uppercase text-white">
             Say Goodbye To
@@ -413,7 +469,7 @@ export default function Home() {
       </section>
 
       {/* Profitability’s Secret Ingredient (final pre-footer section) */}
-      <section className="bg-white">
+      <section className="bg-white reveal">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="grid items-center gap-10 sm:gap-12 sm:grid-cols-2">
             {/* Left copy */}
@@ -436,14 +492,15 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            {/* Right media: real CTA image */}
-            <div className="w-full">
+            {/* Right media: real CTA image with gentle 3D tilt */}
+            <div className="w-full" style={{ perspective: "1000px" }}>
               <img
                 src="/media/CTA%20img.jpg"
                 alt="Resto system helping restaurants improve profitability"
-                className="aspect-4/3 w-full rounded-xl object-cover"
+                className="aspect-4/3 w-full rounded-xl object-cover tilt-3d"
                 loading="lazy"
                 decoding="async"
+                data-tilt-max="8"
               />
             </div>
           </div>
@@ -455,7 +512,6 @@ export default function Home() {
 
 // --- Testimonial Slider Section ---
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { useEffect } from "react";
 
 const testimonials = [
   {

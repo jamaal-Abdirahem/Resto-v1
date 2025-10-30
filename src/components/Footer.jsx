@@ -40,8 +40,21 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-6 pb-10 md:flex-row">
-          {/* Logo */}
-          <img src="/resto logo.png" alt="Resto logo" className="h-10 w-auto" />
+          {/* Brand + Slogan */}
+          <div className="flex flex-col items-center md:items-start">
+            <img
+              src="/resto logo.png"
+              alt="RESTO logo"
+              className="h-10 w-auto"
+            />
+            <p className="mt-1 text-xs leading-none">
+              <span className="text-gray-500">Powered by </span>
+              <span className="font-semibold">
+                <span className="text-[#0B5BD3]">Pay</span>
+                <span className="text-[#FFC300]">Point</span>
+              </span>
+            </p>
+          </div>
 
           {/* Legal links */}
           <ul className="flex items-center gap-6 text-gray-700">

@@ -1,0 +1,6 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Update this to your production URL
+Sitemap: https://your-domain.com/sitemap.xml
