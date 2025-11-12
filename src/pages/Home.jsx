@@ -137,7 +137,7 @@ export default function Home() {
             playsInline
             preload="none"
             ref={heroRef}
-            poster="/media/CTA%20img.jpg"
+            poster="/media/1026(1)-Cover.jpg"
           >
             {/* src set after idle by JS to defer network */}
           </video>
