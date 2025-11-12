@@ -35,7 +35,7 @@ export default function Home() {
     if (!v) return;
     // Lazy set src on first interaction to defer network
     if (!v.getAttribute("src")) {
-      v.setAttribute("src", "/media/1026(1).webm");
+      v.setAttribute("src", "/media/latest video edited.webm ");
       // Ensure the tour video stays muted even if the file has audio
       try {
         v.muted = true;
@@ -100,7 +100,7 @@ export default function Home() {
       if (!v) return;
       if (!v.getAttribute("src")) {
         // Use the newly added hero clip (filename contains spaces)
-        v.setAttribute("src", "/media/resto add video.webm");
+        v.setAttribute("src", "/media/1026(1).webm");
         // Force mute the hero clip (some browsers or streams may carry audio)
         try {
           v.muted = true;
@@ -193,21 +193,22 @@ export default function Home() {
           {/* Video placeholder card */}
           <div className="mt-8 rounded-xl ring-1 ring-gray-200 bg-[#EEF4FF] overflow-hidden">
             <div className="relative aspect-video w-full">
-              {/* Keep this video as a placeholder. Replace the src when you have the final clip. */}
+              /* Keep this video as a placeholder. Replace the src when you have
+              the final clip. */
               <video
                 ref={tourRef}
                 className="absolute inset-0 h-full w-full object-cover"
                 preload="none"
                 playsInline
                 muted
+                poster="/media/latest video edited-Cover.jpg"
                 onLoadedMetadata={onLoaded}
                 onPlay={() => setTourPlaying(true)}
                 onPause={() => setTourPlaying(false)}
                 onEnded={() => setTourPlaying(false)}
                 onTimeUpdate={onTime}
               />
-
-              {/* Center play icon (visual only for now) */}
+              {/* Center play icon (visual only for now) */}}
               {!tourPlaying && (
                 <button
                   type="button"
@@ -224,7 +225,6 @@ export default function Home() {
                   <Play className="h-7 w-7" />
                 </button>
               )}
-
               {/* Bottom controls */}
               <div className="absolute inset-x-0 bottom-0 bg-black/40 text-white">
                 <div className="flex items-center gap-3 px-3 py-2">
@@ -471,9 +471,10 @@ export default function Home() {
       {/* Profitability’s Secret Ingredient (final pre-footer section) */}
       <section className="bg-white reveal">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          {/* Make the image larger by giving it equal grid space: 1fr / 1fr */}
           <div className="grid items-center gap-10 sm:gap-12 sm:grid-cols-2">
-            {/* Left copy */}
-            <div>
+            {/* Left copy (1fr) */}
+            <div className="sm:col-span-1">
               <h2 className="title text-gray-900">
                 Profitability’s Secret
                 <br className="hidden sm:block" />
@@ -492,12 +493,15 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            {/* Right media: real CTA image with gentle 3D tilt */}
-            <div className="w-full" style={{ perspective: "1000px" }}>
+            {/* Right media (1fr) */}
+            <div
+              className="w-full sm:col-span-1"
+              style={{ perspective: "1000px" }}
+            >
               <img
-                src="/media/CTA%20img.jpg"
+                src="/media/resto laptop design.png"
                 alt="Resto system helping restaurants improve profitability"
-                className="aspect-4/3 w-full rounded-xl object-cover tilt-3d"
+                className="w-full rounded-xl object-cover tilt-3d sm:h-[420px] lg:h-[560px]"
                 loading="lazy"
                 decoding="async"
                 data-tilt-max="8"
